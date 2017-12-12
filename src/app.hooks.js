@@ -1,6 +1,8 @@
 // Application hooks that run for every service
 const logger = require('./hooks/logger');
 
+// const relationdatakota = require('./hooks/relationdatakota');
+
 module.exports = {
   before: {
     all: [],

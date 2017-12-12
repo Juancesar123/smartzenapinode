@@ -5,26 +5,34 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
-  const dataprovinsi = sequelizeClient.define('dataprovinsi', {
-    namaprovinsi: {
+  const datakota = sequelizeClient.define('datakota', {
+    dataprovinsiId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    nama_kota:{
       type: DataTypes.STRING,
       allowNull: false
     }
   }, {
     hooks: {
       beforeCount(options) {
-        options.raw = true;
+        options.raw = false;
       }
     }
   });
 
-  dataprovinsi.associate = function (models) { // eslint-disable-line no-unused-vars
+  datakota.associate = function (models) { // eslint-disable-line no-unused-vars
     // Define associations here
+    //console.log(models);
     const Player = models.datakota;
     const Team  = models.dataprovinsi;
-    Team.hasMany(Player); 
+    Player.belongsTo(Team,{foreignKey: 'dataprovinsiId',sourceKey: 'dataprovinsiId',targetKey:'id'});
+    
+    console.log(Player); 
+    // Will add a teamId attribute to Player to hold the primary key value for Team    
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
   };
 
-  return dataprovinsi;
+  return datakota;
 };

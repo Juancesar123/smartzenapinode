@@ -11,8 +11,7 @@ module.exports = function () {
 
   const options = {
     name: 'dataprovinsi',
-    Model,
-    paginate
+    Model
   };
 
   // Initialize our service with any options it requires
@@ -22,6 +21,7 @@ module.exports = function () {
   const service = app.service('dataprovinsi');
 
   service.hooks(hooks);
+  
 
   if (service.filter) {
     service.filter(filters);
