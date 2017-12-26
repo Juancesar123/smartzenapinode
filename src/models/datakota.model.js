@@ -27,9 +27,11 @@ module.exports = function (app) {
     //console.log(models);
     const Player = models.datakota;
     const Team  = models.dataprovinsi;
+    const Source = models.datakota;
+    const Secondary  = models.datakecamatan;
     Player.belongsTo(Team,{foreignKey: 'dataprovinsiId',sourceKey: 'dataprovinsiId',targetKey:'id'});
-    
-    console.log(Player); 
+   // Source.hasMany(Secondary);
+    //console.log(Player); 
     // Will add a teamId attribute to Player to hold the primary key value for Team    
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
   };
